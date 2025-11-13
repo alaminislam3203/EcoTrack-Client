@@ -10,16 +10,16 @@ import { FaLeaf } from 'react-icons/fa';
 const SwipeSlider = () => {
   const [slides, setSlides] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
-  const [loading, setLoading] = useState(true); // Loader state
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3000/challenges')
+    fetch('https://eco-track-server-ten.vercel.app/challenges')
       .then(res => res.json())
       .then(data => {
         const firstThree = data.slice(0, 3);
         setSlides(firstThree);
-        setLoading(false); // Stop loader when data is ready
+        setLoading(false);
       })
       .catch(err => {
         console.error('Failed to load slider data:', err);

@@ -8,7 +8,7 @@ const AllEvents = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:3000/events')
+    fetch('https://eco-track-server-ten.vercel.app/events')
       .then(res => res.json())
       .then(data => {
         // 🟢 Skip first 4 events
@@ -17,15 +17,6 @@ const AllEvents = () => {
           setEvents(remainingEvents);
           setLoading(false);
         }, 1000); // ছোট delay added for smoother UX
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Failed to Load Events',
-          text: 'Please check your server connection.',
-        });
       });
   }, []);
 

@@ -7,20 +7,11 @@ const UpcomingEvents = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/events')
+    fetch('https://eco-track-server-ten.vercel.app/events')
       .then(res => res.json())
       .then(data => {
         setEvents(data);
         setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-        Swal.fire({
-          icon: 'error',
-          title: 'Failed to Load Events',
-          text: 'Please check your server connection.',
-        });
       });
   }, []);
 

@@ -21,7 +21,7 @@ const ActiveChallenges = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3000/challenges')
+    fetch('https://eco-track-server-ten.vercel.app/challenges')
       .then(res => res.json())
       .then(data => {
         // Sort by date (descending) and take 6 recent

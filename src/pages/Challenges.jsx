@@ -38,7 +38,7 @@ const Challenges = () => {
   // Fetch challenges from backend
   useEffect(() => {
     setLoading(true);
-    fetch('http://localhost:3000/challenges')
+    fetch('https://eco-track-server-ten.vercel.app/challenges')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch challenges');
         return res.json();

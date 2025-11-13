@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FaLeaf, FaUsers, FaRecycle, FaCloud } from 'react-icons/fa';
-import { FaSpinner } from 'react-icons/fa';
-import Swal from 'sweetalert2';
+import { FaLeaf, FaUsers, FaRecycle, FaCloud, FaSpinner } from 'react-icons/fa';
 
 const LiveStats = () => {
   const [stats, setStats] = useState(null);
@@ -10,12 +8,14 @@ const LiveStats = () => {
   const fetchStats = async () => {
     try {
       // Fetch base stats
-      const res = await fetch('http://localhost:3000/stats');
+      const res = await fetch('https://eco-track-server-ten.vercel.app/stats');
       if (!res.ok) throw new Error('Failed to load statistics');
       const data = await res.json();
 
       // Fetch challenges collection
-      const challengesRes = await fetch('http://localhost:3000/challenges');
+      const challengesRes = await fetch(
+        'https://eco-track-server-ten.vercel.app/challenges'
+      );
       if (!challengesRes.ok) throw new Error('Failed to fetch challenges');
       const challengesData = await challengesRes.json();
 
@@ -41,12 +41,7 @@ const LiveStats = () => {
         totalCO2Saved,
       });
     } catch (error) {
-      console.error(error);
-      Swal.fire({
-        icon: 'error',
-        title: 'Failed to load statistics',
-        text: error.message,
-      });
+      console.error('Error fetching stats:', error.message);
     } finally {
       setLoading(false);
     }
@@ -68,11 +63,7 @@ const LiveStats = () => {
   }
 
   if (!stats) {
-    return (
-      <div className="text-center py-10 text-red-600 font-semibold">
-        Failed to load statistics.
-      </div>
-    );
+    return null;
   }
 
   return (
@@ -128,4 +119,5 @@ const LiveStats = () => {
     </section>
   );
 };
+
 export default LiveStats;

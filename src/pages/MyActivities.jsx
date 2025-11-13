@@ -19,7 +19,7 @@ const MyActivities = () => {
 
   const fetchActivities = () => {
     setActivitiesLoading(true);
-    fetch(`http://localhost:3000/user-challenges/${userId}`)
+    fetch(`https://eco-track-server-ten.vercel.app/user-challenges/${userId}`)
       .then(res => res.json())
       .then(data => {
         setActivities(data);
@@ -30,7 +30,7 @@ const MyActivities = () => {
 
   const fetchCreatedChallenges = () => {
     setCreatedLoading(true);
-    fetch(`http://localhost:3000/challenges`)
+    fetch(`https://eco-track-server-ten.vercel.app/challenges`)
       .then(res => res.json())
       .then(data => {
         setCreatedChallenges(data);
@@ -60,9 +60,12 @@ const MyActivities = () => {
 
     try {
       setActionLoadingId(id);
-      const res = await fetch(`http://localhost:3000/user-challenges/${id}`, {
-        method: 'DELETE',
-      });
+      const res = await fetch(
+        `https://eco-track-server-ten.vercel.app/user-challenges/${id}`,
+        {
+          method: 'DELETE',
+        }
+      );
       if (res.ok) {
         setActivities(prev => prev.filter(a => a._id !== id));
         Swal.fire(
@@ -96,9 +99,12 @@ const MyActivities = () => {
 
     try {
       setActionLoadingId(c._id);
-      const res = await fetch(`http://localhost:3000/challenges/${c._id}`, {
-        method: 'DELETE',
-      });
+      const res = await fetch(
+        `https://eco-track-server-ten.vercel.app/challenges/${c._id}`,
+        {
+          method: 'DELETE',
+        }
+      );
       if (res.ok) {
         setCreatedChallenges(prev => prev.filter(ch => ch._id !== c._id));
         fetchActivities();

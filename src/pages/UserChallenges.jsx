@@ -10,7 +10,7 @@ const UserChallenges = ({ userId }) => {
   const { joinedChallenges, toggleJoin, reloadJoined } = useJoinedChallenges();
 
   useEffect(() => {
-    fetch('http://localhost:3000/challenges')
+    fetch('https://eco-track-server-ten.vercel.app/challenges')
       .then(res => res.json())
       .then(data => setChallenges(data))
       .catch(err => console.error(err));
@@ -19,7 +19,7 @@ const UserChallenges = ({ userId }) => {
   useEffect(() => {
     if (!userId) return;
 
-    fetch(`http://localhost:3000/user-challenges/${userId}`)
+    fetch(`https://eco-track-server-ten.vercel.app/user-challenges/${userId}`)
       .then(res => res.json())
       .then(data => setUserChallenges(data))
       .catch(err => console.error(err))
@@ -33,11 +33,14 @@ const UserChallenges = ({ userId }) => {
   const handleJoin = async challengeId => {
     setJoining(true);
     try {
-      const res = await fetch('http://localhost:3000/user-challenges', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, challengeId }),
-      });
+      const res = await fetch(
+        'https://eco-track-server-ten.vercel.app/user-challenges',
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId, challengeId }),
+        }
+      );
 
       const data = await res.json();
 

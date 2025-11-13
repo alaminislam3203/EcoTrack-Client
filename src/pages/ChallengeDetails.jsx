@@ -19,7 +19,9 @@ const ChallengeDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/challenges');
+        const res = await fetch(
+          'https://eco-track-server-ten.vercel.app/challenges'
+        );
         const data = await res.json();
         const found = data.find(item => item._id === id);
         if (found) setChallenge(found);
@@ -29,7 +31,7 @@ const ChallengeDetails = () => {
         // Check if user already joined this challenge
         if (user?.email) {
           const userRes = await fetch(
-            `http://localhost:3000/user-challenges/${user.email}`
+            `https://eco-track-server-ten.vercel.app/user-challenges/${user.email}`
           );
           const userChallenges = await userRes.json();
           const hasJoined = userChallenges.some(
@@ -72,7 +74,7 @@ const ChallengeDetails = () => {
       setActionLoading(true);
 
       // 1️⃣ Add to user-challenges
-      await fetch('http://localhost:3000/user-challenges', {
+      await fetch('https://eco-track-server-ten.vercel.app/user-challenges', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -83,7 +85,7 @@ const ChallengeDetails = () => {
 
       // 2️⃣ Increment participants in challenges collection
       await fetch(
-        `http://localhost:3000/challenges/${challenge._id}/increment`,
+        `https://eco-track-server-ten.vercel.app/challenges/${challenge._id}/increment`,
         {
           method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },

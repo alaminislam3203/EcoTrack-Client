@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const API_ENDPOINT = 'http://localhost:3000/all-tips';
+const API_ENDPOINT = 'https://eco-track-server-ten.vercel.app/all-tips';
 
 // Skeleton Card Component
 const SkeletonTipCard = () => (

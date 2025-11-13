@@ -13,7 +13,7 @@ const CHALLENGE_CATEGORIES = [
   'Community',
 ];
 
-const API_ENDPOINT = 'http://localhost:3000/challenges';
+const API_ENDPOINT = 'https://eco-track-server-ten.vercel.app/challenges';
 
 const AddChallenge = () => {
   const navigate = useNavigate();
