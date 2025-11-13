@@ -150,5 +150,4 @@ const AllEvents = () => {
     </section>
   );
 };
-
 export default AllEvents;
